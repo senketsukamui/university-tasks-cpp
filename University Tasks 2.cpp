@@ -13,23 +13,14 @@ void rangeBasedFor(vector<int> const& input) {
 	}
 }
 
-void calculateGeneticDiffer(vector<char> elements) {
-	vector<int> count(elements.size());
-	int countG = 0, countC = 0;
-	for (unsigned int i = 0; i < elements.size(); i++) {
-		for (unsigned int j = 0; j < i; j++) {
-			if (elements[j] == *"G") {
-				countG++;
-			}
-			else if (elements[j] == *"C") {
-				countC++;
-				}
-			count[i] = countG - countC;
-			countC = 0;
-			countG = 0;
-		}
+vector<int> calculateGeneticDiffer(vector<char> elements) {
+	vector<int> differ(elements.size());
+	for (unsigned int i = 0; i < differ.size(); i++) {
+		int countG = count(elements.begin(), elements.begin() + i, "G");
+		int countC = count(elements.begin(), elements.begin() + i, "C");
+		differ[i] = countG - countC;
 	}
-	rangeBasedFor(count);
+	return differ;
 }
 int calculateFunction(int N) {
 	return 0;
@@ -59,7 +50,7 @@ bool palyndromeCheck(vector<int> elements) {
 
 int main()
 {
-	calculateGeneticDiffer({'A', 'G', 'C', 'C', 'A', 'G', 'C', 'G'});
+	rangeBasedFor(calculateGeneticDiffer({'A', 'G', 'C', 'C', 'A', 'G', 'C', 'G'}));
 	// cout << minimalElementIndex({ 2, 6, 8, 1, 5, 1 });
 	return 0;
 }
