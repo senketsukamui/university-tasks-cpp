@@ -17,13 +17,18 @@ void printPrimes(int m) {
 		}
 	}
 }
-void printBinary(int m) {
-	int binaryNumber;
-	while (m != 0) {
-		binaryNumber = m % 2;
+int printBinary(int m) {
+	int output = 0, k = 1;
+
+	while (m)
+	{
+		output += (m % 2) * k;
+		k *= 10;
 		m /= 2;
-		cout << binaryNumber;
 	}
+
+	return output;
+	
 }
 void printPrimesRev(int m) {
 	for (int i = m; i > 1; i--) {
@@ -56,7 +61,7 @@ void functionsManager(int m) {
 		printPrimesRev(m);
 		break;
 	case 4:
-		printBinary(m);
+		cout << printBinary(m);
 		break;
 	default:
 		cout << "You typed wrong number. Try again.";
@@ -66,5 +71,5 @@ void functionsManager(int m) {
 }
 int main()
 {
-	functionsManager(3);
+	functionsManager(6);
 }
